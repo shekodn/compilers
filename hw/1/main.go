@@ -80,6 +80,23 @@ func (q queue) Back() (int) {
   return q[l-1]
 }
 
+func checksStack() {
+  myStack := make(stack,0)
+  fmt.Println("Empty?: ", myStack.isEmpty())
+  myStack = myStack.Push(10)
+  myStack = myStack.Push(12)
+  myStack = myStack.Push(14)
+  myStack = myStack.Push(16)
+
+  fmt.Println("Stack: ", myStack)
+  fmt.Println("Top:", myStack.Top())
+  myStack = myStack.Push(1)
+  fmt.Println("Push 1:", myStack)
+  fmt.Println("Top:", myStack.Top())
+  myStack, _ = myStack.Pop()
+  fmt.Println("Pop 1, so new top is:", myStack.Top())
+}
+
 func checksQueue() {
   myQueue := make(queue,0)
   myQueue = myQueue.PushBack(10)
@@ -102,30 +119,8 @@ func checksQueue() {
 }
 
 func main(){
-    myStack := make(stack,0)
-    myStack = myStack.Push(1)
-    myStack = myStack.Push(2)
-    myStack = myStack.Push(3)
 
-    fmt.Println("Stack:", myStack)
-    fmt.Println("Top:", myStack.Top())
-
-    // myStack, x := myStack.Pop()
-    // fmt.Println(x)
-    //
-    // myStack, x = myStack.Pop()
-    // fmt.Println(x)
-    //
-    // myStack, x = myStack.Pop()
-    // fmt.Println(x)
-    //
-    // myStack, x = myStack.Pop() //0
-    // fmt.Println(x)
-    //
-    // myStack, x = myStack.Pop() //0
-    // fmt.Println(x)
-
-    ///
+    checksStack()
     fmt.Println("- - -")
     checksQueue()
 
