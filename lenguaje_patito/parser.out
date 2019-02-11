@@ -1,0 +1,298 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    comment
+    notequal
+    gt
+    divide
+    lt
+    digit
+    cteString
+    times
+    plus
+    minus
+
+Grammar
+
+Rule 0     S' -> PROGRAM
+Rule 1     PROGRAM -> program id sc PROGRAM_A
+Rule 2     PROGRAM_A -> VARS
+Rule 3     PROGRAM_A -> EMPTY
+Rule 4     VARS -> var VARS_A
+Rule 5     VARS_A -> id comma VARS_A
+Rule 6     VARS_A -> id colon TYPE sc p_VARS_B
+Rule 7     p_VARS_B -> VARS_A
+Rule 8     p_VARS_B -> EMPTY
+Rule 9     TYPE -> float
+Rule 10    TYPE -> int
+Rule 11    BLOQUE -> lb BLOQUE_A rb
+Rule 12    BLOQUE_A -> ESTATUTO BLOQUE_A
+Rule 13    BLOQUE_A -> EMPTY
+Rule 14    ESTATUTO -> ASIGNACION
+Rule 15    ESTATUTO -> CONDICION
+Rule 16    ESTATUTO -> ESCRITURA
+Rule 17    ASIGNACION -> id eq EXPRESION sc
+Rule 18    ESCRITURA -> print lp ESCRITURA_A rp sc
+Rule 19    ESCRITURA_A -> ESCRITURA_B comma ESCRITURA_A
+Rule 20    ESCRITURA_A -> ESCRITURA_B
+Rule 21    ESCRITURA_B -> string
+Rule 22    ESCRITURA_B -> EXPRESION
+Rule 23    EXPRESION -> EXP EXPRESION_A
+Rule 24    EXPRESION_A -> rel EXP
+Rule 25    EXPRESION_A -> EMPTY
+Rule 26    CONDICION -> if lp EXPRESION rp BLOQUE CONDICION_A sc
+Rule 27    CONDICION_A -> else BLOQUE
+Rule 28    CONDICION_A -> EMPTY
+Rule 29    EXP -> TERMINO sign EXP
+Rule 30    EXP -> TERMINO
+Rule 31    TERMINO -> FACTOR lp TERMINO
+Rule 32    TERMINO -> FACTOR
+Rule 33    FACTOR -> lp EXPRESION rp
+Rule 34    FACTOR -> FACTOR_A VARCTE
+Rule 35    FACTOR_A -> sign
+Rule 36    FACTOR_A -> EMPTY
+Rule 37    VARCTE -> id
+Rule 38    VARCTE -> cteInt
+Rule 39    VARCTE -> cteFloat
+Rule 40    EMPTY -> <empty>
+
+Terminals, with rules where they appear
+
+colon                : 6
+comma                : 5 19
+comment              : 
+cteFloat             : 39
+cteInt               : 38
+cteString            : 
+digit                : 
+divide               : 
+else                 : 27
+eq                   : 17
+error                : 
+float                : 9
+gt                   : 
+id                   : 1 5 6 17 37
+if                   : 26
+int                  : 10
+lb                   : 11
+lp                   : 18 26 31 33
+lt                   : 
+minus                : 
+notequal             : 
+plus                 : 
+print                : 18
+program              : 1
+rb                   : 11
+rel                  : 24
+rp                   : 18 26 33
+sc                   : 1 6 17 18 26
+sign                 : 29 35
+string               : 21
+times                : 
+var                  : 4
+
+Nonterminals, with rules where they appear
+
+ASIGNACION           : 14
+BLOQUE               : 26 27
+BLOQUE_A             : 11 12
+CONDICION            : 15
+CONDICION_A          : 26
+EMPTY                : 3 8 13 25 28 36
+ESCRITURA            : 16
+ESCRITURA_A          : 18 19
+ESCRITURA_B          : 19 20
+ESTATUTO             : 12
+EXP                  : 23 24 29
+EXPRESION            : 17 22 26 33
+EXPRESION_A          : 23
+FACTOR               : 31 32
+FACTOR_A             : 34
+PROGRAM              : 0
+PROGRAM_A            : 1
+TERMINO              : 29 30 31
+TYPE                 : 6
+VARCTE               : 34
+VARS                 : 2
+VARS_A               : 4 5 7
+p_VARS_B             : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . PROGRAM
+    (1) PROGRAM -> . program id sc PROGRAM_A
+
+    program         shift and go to state 1
+
+    PROGRAM                        shift and go to state 2
+
+state 1
+
+    (1) PROGRAM -> program . id sc PROGRAM_A
+
+    id              shift and go to state 3
+
+
+state 2
+
+    (0) S' -> PROGRAM .
+
+
+
+state 3
+
+    (1) PROGRAM -> program id . sc PROGRAM_A
+
+    sc              shift and go to state 4
+
+
+state 4
+
+    (1) PROGRAM -> program id sc . PROGRAM_A
+    (2) PROGRAM_A -> . VARS
+    (3) PROGRAM_A -> . EMPTY
+    (4) VARS -> . var VARS_A
+    (40) EMPTY -> .
+
+    var             shift and go to state 7
+    $end            reduce using rule 40 (EMPTY -> .)
+
+    PROGRAM_A                      shift and go to state 5
+    EMPTY                          shift and go to state 8
+    VARS                           shift and go to state 6
+
+state 5
+
+    (1) PROGRAM -> program id sc PROGRAM_A .
+
+    $end            reduce using rule 1 (PROGRAM -> program id sc PROGRAM_A .)
+
+
+state 6
+
+    (2) PROGRAM_A -> VARS .
+
+    $end            reduce using rule 2 (PROGRAM_A -> VARS .)
+
+
+state 7
+
+    (4) VARS -> var . VARS_A
+    (5) VARS_A -> . id comma VARS_A
+    (6) VARS_A -> . id colon TYPE sc p_VARS_B
+
+    id              shift and go to state 10
+
+    VARS_A                         shift and go to state 9
+
+state 8
+
+    (3) PROGRAM_A -> EMPTY .
+
+    $end            reduce using rule 3 (PROGRAM_A -> EMPTY .)
+
+
+state 9
+
+    (4) VARS -> var VARS_A .
+
+    $end            reduce using rule 4 (VARS -> var VARS_A .)
+
+
+state 10
+
+    (5) VARS_A -> id . comma VARS_A
+    (6) VARS_A -> id . colon TYPE sc p_VARS_B
+
+    comma           shift and go to state 11
+    colon           shift and go to state 12
+
+
+state 11
+
+    (5) VARS_A -> id comma . VARS_A
+    (5) VARS_A -> . id comma VARS_A
+    (6) VARS_A -> . id colon TYPE sc p_VARS_B
+
+    id              shift and go to state 10
+
+    VARS_A                         shift and go to state 13
+
+state 12
+
+    (6) VARS_A -> id colon . TYPE sc p_VARS_B
+    (9) TYPE -> . float
+    (10) TYPE -> . int
+
+    float           shift and go to state 15
+    int             shift and go to state 14
+
+    TYPE                           shift and go to state 16
+
+state 13
+
+    (5) VARS_A -> id comma VARS_A .
+
+    $end            reduce using rule 5 (VARS_A -> id comma VARS_A .)
+
+
+state 14
+
+    (10) TYPE -> int .
+
+    sc              reduce using rule 10 (TYPE -> int .)
+
+
+state 15
+
+    (9) TYPE -> float .
+
+    sc              reduce using rule 9 (TYPE -> float .)
+
+
+state 16
+
+    (6) VARS_A -> id colon TYPE . sc p_VARS_B
+
+    sc              shift and go to state 17
+
+
+state 17
+
+    (6) VARS_A -> id colon TYPE sc . p_VARS_B
+    (7) p_VARS_B -> . VARS_A
+    (8) p_VARS_B -> . EMPTY
+    (5) VARS_A -> . id comma VARS_A
+    (6) VARS_A -> . id colon TYPE sc p_VARS_B
+    (40) EMPTY -> .
+
+    id              shift and go to state 10
+    $end            reduce using rule 40 (EMPTY -> .)
+
+    VARS_A                         shift and go to state 19
+    p_VARS_B                       shift and go to state 18
+    EMPTY                          shift and go to state 20
+
+state 18
+
+    (6) VARS_A -> id colon TYPE sc p_VARS_B .
+
+    $end            reduce using rule 6 (VARS_A -> id colon TYPE sc p_VARS_B .)
+
+
+state 19
+
+    (7) p_VARS_B -> VARS_A .
+
+    $end            reduce using rule 7 (p_VARS_B -> VARS_A .)
+
+
+state 20
+
+    (8) p_VARS_B -> EMPTY .
+
+    $end            reduce using rule 8 (p_VARS_B -> EMPTY .)
+
