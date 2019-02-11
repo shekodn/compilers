@@ -1,6 +1,5 @@
 import sys
-from parser import parser, yacc
-
+from parser.parser import parser, yacc
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         file = sys.argv[1]
