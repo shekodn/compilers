@@ -1,0 +1,102 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    colon
+    comma
+    comment
+    cteString
+    digit
+    divide
+    else
+    eq
+    float
+    gt
+    if
+    int
+    lb
+    lt
+    minus
+    notequal
+    plus
+    print
+    rb
+    times
+
+Grammar
+
+Rule 0     S' -> PORGRAM
+Rule 1     PORGRAM -> program id sc PROGRAM_A BLOQUE
+Rule 2     PROGRAM_A -> VARS
+Rule 3     PROGRAM_A -> empty
+Rule 4     VARS -> var VARS_A
+Rule 5     VARS_A -> var VARS_A
+Rule 6     ESTATUTO -> ASIGNACION
+Rule 7     ESTATUTO -> CONDICION
+Rule 8     ESTATUTO -> ESCRITURA
+Rule 9     BLOQUE -> { expression }
+Rule 10    FACTOR -> lp EXP rp
+Rule 11    FACTOR -> FACTOR_A VARCTE
+Rule 12    FACTOR -> FACTOR_B
+Rule 13    FACTOR_A -> FACTOR_B VARCTE
+Rule 14    FACTOR_B -> SIGN
+Rule 15    FACTOR_B -> empty
+Rule 16    VARCTE -> id
+Rule 17    VARCTE -> cteInt
+Rule 18    VARCTE -> cteFloat
+Rule 19    empty -> <empty>
+
+Terminals, with rules where they appear
+
+colon                : 
+comma                : 
+comment              : 
+cteFloat             : 18
+cteInt               : 17
+cteString            : 
+digit                : 
+divide               : 
+else                 : 
+eq                   : 
+error                : 
+float                : 
+gt                   : 
+id                   : 1 16
+if                   : 
+int                  : 
+lb                   : 
+lp                   : 10
+lt                   : 
+minus                : 
+notequal             : 
+plus                 : 
+print                : 
+program              : 1
+rb                   : 
+rp                   : 10
+sc                   : 1
+times                : 
+var                  : 4 5
+{                    : 9
+}                    : 9
+
+Nonterminals, with rules where they appear
+
+ASIGNACION           : 6
+BLOQUE               : 1
+CONDICION            : 7
+ESCRITURA            : 8
+ESTATUTO             : 
+EXP                  : 10
+FACTOR               : 
+FACTOR_A             : 11
+FACTOR_B             : 12 13
+PORGRAM              : 0
+PROGRAM_A            : 1
+SIGN                 : 14
+VARCTE               : 11 13
+VARS                 : 2
+VARS_A               : 4 5
+empty                : 3 15
+expression           : 9
+
